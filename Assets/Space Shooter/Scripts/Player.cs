@@ -26,6 +26,11 @@ namespace SpaceShooter
         // Update is called once per frame
         void Update()
         {
+            CalculateMovement();
+        }
+
+        private void CalculateMovement()
+        {
             _horInput = Input.GetAxis("Horizontal");
             _vertInput = Input.GetAxis("Vertical");
 
