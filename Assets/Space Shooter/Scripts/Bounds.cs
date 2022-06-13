@@ -11,13 +11,13 @@ namespace SpaceShooter
         public float max;
     }
 
-    public class Bounds : MonoBehaviour
+    public abstract class Bounds : MonoBehaviour
     {
         [SerializeField]
-        private AxisConstraints _xAxis,
+        protected AxisConstraints _xAxis,
             _yAxis;
 
-        private Vector3 _currentPos;
+        protected Vector3 _currentPos;
 
         // Start is called before the first frame update
         void Start()
@@ -31,25 +31,7 @@ namespace SpaceShooter
             ApplyBounds();
         }
 
-        private void ApplyBounds()
-        {
-            _currentPos = transform.position;
+        protected abstract void ApplyBounds();
 
-            /// if player pos is too far left/right (min/max)
-            /// reset pos to opposite side
-            if (transform.position.x < _xAxis.min)
-            {
-                _currentPos.x = _xAxis.max;
-            }
-            else if (transform.position.x > _xAxis.max)
-            {
-                _currentPos.x = _xAxis.min;
-            }
-
-            /// clamp player y pos to min/max value
-            _currentPos.y = Mathf.Clamp(_currentPos.y, _yAxis.min, _yAxis.max);
-
-            transform.position = _currentPos;
-        }
     }
 }
