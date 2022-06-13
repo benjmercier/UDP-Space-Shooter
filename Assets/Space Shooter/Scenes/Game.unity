@@ -309,6 +309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1978928314}
   - component: {fileID: 1978928315}
+  - component: {fileID: 1978928317}
   - component: {fileID: 1978928316}
   - component: {fileID: 1978928313}
   - component: {fileID: 1978928312}
@@ -428,3 +429,16 @@ MonoBehaviour:
   _yAxis:
     min: -5
     max: 6
+--- !u!114 &1978928317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978928310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e710a44ce8778e349a72800c1aafd4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponPrefab: {fileID: 8519094167308566704, guid: 08f84c3d1a0de3143a3f72565f7a3431, type: 3}
