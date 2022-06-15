@@ -1,13 +1,16 @@
+using SpaceShooter.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace SpaceShooter
 {
-    public class Laser : MonoBehaviour
+    public class Laser : MonoBehaviour, IDamageable
     {
         [SerializeField]
         private float _speed = 5f;
+
+        public GameObject DamagingObj => this.gameObject;
 
         // Start is called before the first frame update
         void Start()

@@ -19,6 +19,5 @@ namespace SpaceShooter
         }
 
         protected abstract void ApplyBounds();
-
     }
 }
