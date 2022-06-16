@@ -6,6 +6,6 @@ namespace SpaceShooter.Interfaces
 {
     public interface IDamageable
     {
-        GameObject DamagingObj { get; }
+        void Damage();
     }
 }

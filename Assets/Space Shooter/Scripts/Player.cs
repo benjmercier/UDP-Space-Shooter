@@ -1,11 +1,10 @@
-using SpaceShooter.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace SpaceShooter
 {
-    public class Player : MonoBehaviour, IDamageable
+    public class Player : MonoBehaviour
     {
         [SerializeField]
         private Vector3 _startPos = new Vector3(0f, -3f, 0f);
@@ -17,8 +16,6 @@ namespace SpaceShooter
             _vertInput;
 
         private Vector3 _inputDirection;
-
-        public GameObject DamagingObj => this.gameObject;
 
         // Start is called before the first frame update
         void Start()
