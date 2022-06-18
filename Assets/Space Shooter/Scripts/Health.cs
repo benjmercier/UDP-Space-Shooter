@@ -1,5 +1,6 @@
 using SpaceShooter.Interfaces;
 using SpaceShooter.PropertyAttributes;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,8 +17,14 @@ namespace SpaceShooter
         [ReadOnly]
         private int _remainingLives;
 
+        private string _objTag;
+
+        public static event Action<string> onObjDestroyed;
+
         private void Start()
         {
+            _objTag = transform.root.tag;
+
             ResetCurrentLives();
         }
 
@@ -40,8 +47,14 @@ namespace SpaceShooter
             }
             else
             {
+                OnObjDestroyed(_objTag);
                 Destroy(this.gameObject);
             }
+        }
+
+        private void OnObjDestroyed(string objTag)
+        {
+            onObjDestroyed?.Invoke(objTag);
         }
     }
 }

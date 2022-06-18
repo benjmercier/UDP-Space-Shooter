@@ -10,7 +10,8 @@ namespace SpaceShooter
         private GameObject _weaponPrefab;
 
         private Vector3 _currentPos;
-        private float _offset = 0.75f;
+        [SerializeField]
+        private float _offset = 0.85f;
 
         [SerializeField]
         private float _fireRate = 0.25f;

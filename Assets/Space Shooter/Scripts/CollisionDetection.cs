@@ -6,10 +6,10 @@ using UnityEngine;
 
 namespace SpaceShooter
 {
-    [RequireComponent(typeof(Health), typeof(Rigidbody))]
+    [RequireComponent(typeof(Health), typeof(Rigidbody2D))]
     public class CollisionDetection : MonoBehaviour
     {
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.TryGetComponentInParents(out IDamageable damageable))
             {
