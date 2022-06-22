@@ -632,7 +632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPrefab: {fileID: 4028764314786224247, guid: afcb5c165986eba498b27947a9b10693, type: 3}
-  _amountToSpawn: 5
+  _amountToSpawn: 2
 --- !u!1 &1912702538
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,9 +763,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e710a44ce8778e349a72800c1aafd4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponPrefab: {fileID: 2610193211247088937, guid: 64dc9259546fd64468221e7e7d37376b, type: 3}
+  _weaponPrefabs:
+  - {fileID: 2610193211247088937, guid: 64dc9259546fd64468221e7e7d37376b, type: 3}
+  - {fileID: 6589253077692861482, guid: 0febd499e588a5446a0a6e3ef0030fcb, type: 3}
   _offset: 0.85
   _fireRate: 0.25
+  _isTrippleShotAcive: 0
 --- !u!114 &1978928319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -790,6 +793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52c0accc545f4444097bef11609527c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _objCategory: 0
   _maxLives: 3
   _remainingLives: 0
 --- !u!1 &2076316197
@@ -916,6 +920,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Gun Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1166050923798294099, guid: 774439aca0dd3124c910e72f72362098, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7496413734048991007, guid: 774439aca0dd3124c910e72f72362098, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1017,6 +1025,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spinning Death Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3242220301315337405, guid: a0d76d1c381456748a434f21f124e97f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0d76d1c381456748a434f21f124e97f, type: 3}
 --- !u!1001 &6297760989272569820
@@ -1029,6 +1041,10 @@ PrefabInstance:
     - target: {fileID: 836804837759077482, guid: 72e2e82690bc9e646981d84e88ba581d, type: 3}
       propertyPath: m_Name
       value: Ramming Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 836804837759077482, guid: 72e2e82690bc9e646981d84e88ba581d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8339210898911503654, guid: 72e2e82690bc9e646981d84e88ba581d, type: 3}
       propertyPath: m_RootOrder

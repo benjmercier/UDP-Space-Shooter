@@ -13,10 +13,13 @@ namespace SpaceShooter
         {
             if (other.TryGetComponentInParents(out IDamageable damageable))
             {
-                damageable.Damage();
-                Debug.Log($"{other.transform.root.tag} is hit!");
+                this.TryGetComponent(out Health health);
+                damageable.Damage(health.ObjCategory);
             }
         }
+
+        // if coming from obj,
+        // then don't damage that obj
 
 
         //if (other.transform.parent != null)

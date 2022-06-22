@@ -7,7 +7,7 @@ namespace SpaceShooter
     public class Attack : MonoBehaviour
     {
         [SerializeField]
-        private GameObject _weaponPrefab;
+        private List<GameObject> _weaponPrefabs;
 
         private Vector3 _currentPos;
         [SerializeField]
@@ -18,6 +18,9 @@ namespace SpaceShooter
         private bool _canFire;
 
         private WaitForSeconds _waitTime;
+
+        [SerializeField]
+        private bool _isTrippleShotAcive = false;
 
         // Start is called before the first frame update
         void Start()
@@ -37,9 +40,19 @@ namespace SpaceShooter
         private void CalculateAttack()
         {
             _currentPos = transform.position;
-            _currentPos.y += _offset;
+            int prefab;
 
-            Instantiate(_weaponPrefab, _currentPos, Quaternion.identity);
+            if (!_isTrippleShotAcive)
+            {
+                _currentPos.y += _offset;
+                prefab = 0;
+            }
+            else
+            {
+                prefab = 1;
+            }
+
+            Instantiate(_weaponPrefabs[prefab], _currentPos, Quaternion.identity);
 
             StartCoroutine(FireRateRoutine());
         }

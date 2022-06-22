@@ -4,8 +4,16 @@ using UnityEngine;
 
 namespace SpaceShooter.Interfaces
 {
+    public enum Category
+    {
+        Player,
+        Enemy
+    }
+
     public interface IDamageable
     {
-        void Damage();
+        Category ObjCategory { get; } 
+
+        void Damage(Category category);
     }
 }
