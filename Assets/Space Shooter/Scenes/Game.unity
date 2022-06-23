@@ -631,7 +631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e134b10c2d9738648a26bb19bc5660bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnPrefab: {fileID: 4028764314786224247, guid: afcb5c165986eba498b27947a9b10693, type: 3}
+  _spawnPrefab: {fileID: 3242220301315337405, guid: a0d76d1c381456748a434f21f124e97f, type: 3}
   _amountToSpawn: 2
 --- !u!1 &1912702538
 GameObject:
@@ -763,6 +763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e710a44ce8778e349a72800c1aafd4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attacker: 1
   _weaponPrefabs:
   - {fileID: 2610193211247088937, guid: 64dc9259546fd64468221e7e7d37376b, type: 3}
   - {fileID: 6589253077692861482, guid: 0febd499e588a5446a0a6e3ef0030fcb, type: 3}
@@ -793,7 +794,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52c0accc545f4444097bef11609527c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objCategory: 0
   _maxLives: 3
   _remainingLives: 0
 --- !u!1 &2076316197

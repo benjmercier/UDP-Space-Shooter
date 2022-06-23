@@ -1,11 +1,17 @@
+using SpaceShooter.Helpers;
+using SpaceShooter.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace SpaceShooter
 {
-    public class Attack : MonoBehaviour
+    public class Attack : MonoBehaviour, IAttackable
     {
+        [SerializeField]
+        private Category _attacker;
+        public Category Attacker { get => _attacker; set => _attacker = value; }
+
         [SerializeField]
         private List<GameObject> _weaponPrefabs;
 
@@ -52,7 +58,13 @@ namespace SpaceShooter
                 prefab = 1;
             }
 
-            Instantiate(_weaponPrefabs[prefab], _currentPos, Quaternion.identity);
+            var obj = Instantiate(_weaponPrefabs[prefab], _currentPos, Quaternion.identity);
+            var fireable = obj.GetComponentsInChildren<IAttackable>();
+
+            foreach (var weapon in fireable)
+            {
+                weapon.Attacker = _attacker;
+            }
 
             StartCoroutine(FireRateRoutine());
         }

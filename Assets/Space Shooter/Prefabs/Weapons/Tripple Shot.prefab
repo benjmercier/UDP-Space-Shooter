@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8033627732334227892}
   - component: {fileID: 1673690034410955983}
   m_Layer: 0
-  m_Name: Left
+  m_Name: TS Left
   m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 17913082720808441}
   - component: {fileID: 1177441565462875549}
   m_Layer: 0
-  m_Name: Right
+  m_Name: TS Right
   m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 8586742026675004591}
   - component: {fileID: 5906806667488874071}
   m_Layer: 0
-  m_Name: Middle
+  m_Name: TS Middle
   m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

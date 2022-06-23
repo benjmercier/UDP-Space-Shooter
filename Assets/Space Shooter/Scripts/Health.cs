@@ -7,12 +7,8 @@ using UnityEngine;
 
 namespace SpaceShooter
 {
-    public class Health : MonoBehaviour, IDamageable
+    public class Health : MonoBehaviour
     {
-        [SerializeField]
-        private Category _objCategory;
-        public Category ObjCategory => _objCategory;
-
         [SerializeField]
         [Tooltip("Set Max Lives to 0 if any damage will destroy the object.")]
         [Min(0)]
@@ -43,20 +39,16 @@ namespace SpaceShooter
             _remainingLives = _maxLives;
         }
 
-        public void Damage(Category category)
+        public void Damage()
         {
-            Debug.Log($"{category} hit {ObjCategory}");
-            if (_objCategory != category)
-            {                
-                if (_remainingLives > 0)
-                {
-                    _remainingLives--;
-                }
-                else
-                {
-                    OnObjDestroyed(_objTag);
-                    Destroy(this.gameObject);
-                }
+            if (_remainingLives > 0)
+            {
+                _remainingLives--;
+            }
+            else
+            {
+                OnObjDestroyed(_objTag);
+                Destroy(this.gameObject);
             }
         }
 

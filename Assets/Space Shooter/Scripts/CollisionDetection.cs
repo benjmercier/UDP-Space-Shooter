@@ -1,4 +1,5 @@
 using SpaceShooter.ExtensionMethods;
+using SpaceShooter.Helpers;
 using SpaceShooter.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,19 +8,56 @@ using UnityEngine;
 namespace SpaceShooter
 {
     [RequireComponent(typeof(Health), typeof(Rigidbody2D))]
-    public class CollisionDetection : MonoBehaviour
+    public class CollisionDetection : MonoBehaviour, ICollidable
     {
-        private void OnTriggerEnter2D(Collider2D other)
+        public GameObject GameObject => this.gameObject;
+        private Health _objHealth;
+        private Category _objAttacking = Category.Default;
+
+        private void Start()
         {
-            if (other.TryGetComponentInParents(out IDamageable damageable))
+            if (TryGetComponent(out Health health))
             {
-                this.TryGetComponent(out Health health);
-                damageable.Damage(health.ObjCategory);
+                _objHealth = health;
+            }
+            else
+            {
+                Debug.LogError($"{_objHealth.GetType()} component not applied to {this.transform.name}");
+            }           
+            
+            /// Checks if this object has Attack script with IAttackable interface
+            /// If so, sets _objAttacking to IAttackable.Attacker 
+            if (TryGetComponent(out IAttackable attackable))
+            {
+                _objAttacking = attackable.Attacker;
             }
         }
 
-        // if coming from obj,
-        // then don't damage that obj
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.TryGetComponentInParents(out ICollidable collidable))
+            {
+                /// Checks if collision occured with ICollidable implementing IAttackable
+                /// If so, checks if other IAttackable = _objAttacking (Category.Default by default)
+                /// If so, return w/o calling CollisionDetected()
+                if (collidable.GameObject.TryGetComponent(out IAttackable attackable))
+                {
+                    if (_objAttacking == attackable.Attacker)
+                    {
+                        return;
+                    }
+                }
+
+                CollisionDetected();
+            }
+        }
+
+        private void CollisionDetected()
+        {
+            _objHealth.Damage();
+        }
+
+
 
 
         //if (other.transform.parent != null)
