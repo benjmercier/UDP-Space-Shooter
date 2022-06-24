@@ -13,6 +13,9 @@ namespace SpaceShooter.Managers
         private int _amountToSpawn = 5;
         private int _currentSpawn = 0;
 
+        [SerializeField]
+        private GameObject _powerupPrefab;
+
         private bool _canSpawn;
 
         private void OnEnable()
@@ -37,6 +40,7 @@ namespace SpaceShooter.Managers
             if (Input.GetKeyDown(KeyCode.F) && _canSpawn)
             {
                 StartCoroutine(SpawnRoutine());
+                StartCoroutine(SpawnPowerupRoutine());
             }
         }
 
@@ -59,6 +63,19 @@ namespace SpaceShooter.Managers
             }
 
             _currentSpawn = 0;
+        }
+
+        private IEnumerator SpawnPowerupRoutine()
+        {
+            while (_canSpawn)
+            {
+                var obj = Instantiate(_powerupPrefab);
+                obj.transform.position = new Vector2(Random.Range(-5, 5), 7);
+                obj.transform.parent = this.transform;
+
+                float random = Random.Range(3f, 7f);
+                yield return new WaitForSeconds(random);
+            }
         }
 
         private void OnPlayerDestroyed(string objTag)

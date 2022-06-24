@@ -1,19 +1,21 @@
+using SpaceShooter.ExtensionMethods;
 using SpaceShooter.Helpers;
 using SpaceShooter.Interfaces;
+using SpaceShooter.Powerups;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace SpaceShooter
 {
-    public class Attack : MonoBehaviour, IAttackable
-    {
-        [SerializeField]
+    [RequireComponent(typeof(ICollidable))]
+    public class Attack : MonoBehaviour
+    {        
         private Category _attacker;
-        public Category Attacker { get => _attacker; set => _attacker = value; }
 
         [SerializeField]
         private List<GameObject> _weaponPrefabs;
+        private GameObject _currentWeapon;
 
         private Vector3 _currentPos;
         [SerializeField]
@@ -28,9 +30,26 @@ namespace SpaceShooter
         [SerializeField]
         private bool _isTrippleShotAcive = false;
 
+        private Coroutine _trippleShotPowerDownRoutine;
+
+        private void OnEnable()
+        {
+            Powerup.onActivateTrippleShot += ActivateTrippleShot;
+        }
+
+        private void OnDisable()
+        {
+            Powerup.onActivateTrippleShot += ActivateTrippleShot;
+        }
+
         // Start is called before the first frame update
         void Start()
         {
+            if (transform.TryGetComponentInParents(out ICollidable collidable))
+            {
+                _attacker = collidable.Type;
+            }
+
             UpdateWaitTime(_fireRate);
         }
 
@@ -58,12 +77,13 @@ namespace SpaceShooter
                 prefab = 1;
             }
 
-            var obj = Instantiate(_weaponPrefabs[prefab], _currentPos, Quaternion.identity);
-            var fireable = obj.GetComponentsInChildren<IAttackable>();
-
-            foreach (var weapon in fireable)
+            _currentWeapon = Instantiate(_weaponPrefabs[prefab], _currentPos, Quaternion.identity);
+            foreach (Transform child in _currentWeapon.transform)
             {
-                weapon.Attacker = _attacker;
+                if (child.TryGetComponent(out ICollidable collidable))
+                {
+                    collidable.Type = _attacker;
+                }
             }
 
             StartCoroutine(FireRateRoutine());
@@ -83,6 +103,26 @@ namespace SpaceShooter
             _waitTime = new WaitForSeconds(rate);
 
             _canFire = true;
+        }
+
+        private void ActivateTrippleShot()
+        {
+            if (_trippleShotPowerDownRoutine != null)
+            {
+                StopCoroutine(_trippleShotPowerDownRoutine);
+            }
+
+            _isTrippleShotAcive = true;
+
+            _trippleShotPowerDownRoutine = StartCoroutine(TrippleShotPowerDownRoutine());
+        }
+
+        private IEnumerator TrippleShotPowerDownRoutine()
+        {
+            yield return new WaitForSeconds(5f);
+
+            _isTrippleShotAcive = false;
+            _trippleShotPowerDownRoutine = null;
         }
     }
 }

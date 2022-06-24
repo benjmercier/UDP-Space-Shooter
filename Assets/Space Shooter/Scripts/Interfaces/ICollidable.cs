@@ -7,6 +7,6 @@ namespace SpaceShooter.Interfaces
 {
     public interface ICollidable
     {
-        GameObject GameObject { get; }
+        Category Type { get; set; }
     }
 }

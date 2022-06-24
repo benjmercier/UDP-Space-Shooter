@@ -7,12 +7,12 @@ using UnityEngine;
 
 namespace SpaceShooter
 {
-    [RequireComponent(typeof(Health), typeof(Rigidbody2D))]
-    public class CollisionDetection : MonoBehaviour, ICollidable
+    [RequireComponent(typeof(Health), typeof(Rigidbody2D), typeof(ICollidable))]
+    public class CollisionDetection : MonoBehaviour
     {
         public GameObject GameObject => this.gameObject;
         private Health _objHealth;
-        private Category _objAttacking = Category.Default;
+        private Category _collidable = Category.Default;
 
         private void Start()
         {
@@ -25,11 +25,9 @@ namespace SpaceShooter
                 Debug.LogError($"{_objHealth.GetType()} component not applied to {this.transform.name}");
             }           
             
-            /// Checks if this object has Attack script with IAttackable interface
-            /// If so, sets _objAttacking to IAttackable.Attacker 
-            if (TryGetComponent(out IAttackable attackable))
+            if (TryGetComponent(out ICollidable collidable))
             {
-                _objAttacking = attackable.Attacker;
+                _collidable = collidable.Type;
             }
         }
 
@@ -37,15 +35,9 @@ namespace SpaceShooter
         {
             if (other.TryGetComponentInParents(out ICollidable collidable))
             {
-                /// Checks if collision occured with ICollidable implementing IAttackable
-                /// If so, checks if other IAttackable = _objAttacking (Category.Default by default)
-                /// If so, return w/o calling CollisionDetected()
-                if (collidable.GameObject.TryGetComponent(out IAttackable attackable))
+                if (collidable.Type == _collidable)
                 {
-                    if (_objAttacking == attackable.Attacker)
-                    {
-                        return;
-                    }
+                    return;
                 }
 
                 CollisionDetected();

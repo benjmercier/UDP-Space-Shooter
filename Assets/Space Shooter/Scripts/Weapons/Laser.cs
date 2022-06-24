@@ -6,18 +6,18 @@ using UnityEngine;
 
 namespace SpaceShooter
 {
-    public class Laser : MonoBehaviour, IAttackable
+    public class Laser : MonoBehaviour, ICollidable
     {
         [SerializeField]
         private float _speed = 5f;
 
-        public Category Attacker { get; set; }
+        public Category Type { get; set; }
 
         // Start is called before the first frame update
         void Start()
         {
             // change to pool
-            Destroy(gameObject, 3f);
+            Destroy(transform.root.gameObject, 3f);
         }
 
         // Update is called once per frame

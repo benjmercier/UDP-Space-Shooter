@@ -1,11 +1,17 @@
+using SpaceShooter.Helpers;
+using SpaceShooter.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace SpaceShooter
 {
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviour, ICollidable
     {
+        [SerializeField]
+        private Category _objType;
+        public Category Type { get => _objType; set => _objType = value; }
+
         [SerializeField]
         private Vector3 _startPos = new Vector3(0f, -3f, 0f);
 

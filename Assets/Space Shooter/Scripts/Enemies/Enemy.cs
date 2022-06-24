@@ -1,11 +1,17 @@
+using SpaceShooter.Helpers;
+using SpaceShooter.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace SpaceShooter
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : MonoBehaviour, ICollidable
     {
+        [SerializeField]
+        private Category _objType;
+        public Category Type { get => _objType; set => _objType = value; }
+
         [SerializeField]
         private float _speed = 5f;
 
