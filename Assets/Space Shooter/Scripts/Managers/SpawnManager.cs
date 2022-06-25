@@ -14,7 +14,7 @@ namespace SpaceShooter.Managers
         private int _currentSpawn = 0;
 
         [SerializeField]
-        private GameObject _powerupPrefab;
+        private List<GameObject> _powerupPrefabs;
 
         private bool _canSpawn;
 
@@ -69,7 +69,9 @@ namespace SpaceShooter.Managers
         {
             while (_canSpawn)
             {
-                var obj = Instantiate(_powerupPrefab);
+                int powerup = Random.Range(0, _powerupPrefabs.Count);
+
+                var obj = Instantiate(_powerupPrefabs[powerup]);
                 obj.transform.position = new Vector2(Random.Range(-5, 5), 7);
                 obj.transform.parent = this.transform;
 

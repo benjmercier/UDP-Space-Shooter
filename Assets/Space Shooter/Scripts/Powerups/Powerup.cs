@@ -10,10 +10,14 @@ namespace SpaceShooter.Powerups
 {
     public class Powerup : MonoBehaviour
     {
+        // change to scriptable object
+        [SerializeField]
+        private int _powerupID;
         [SerializeField]
         private float _speed = 3f;
 
         public static event Action onActivateTrippleShot;
+        public static event Action<float> onActivateSpeedBoost;
 
         // Start is called before the first frame update
         void Start()
@@ -36,23 +40,32 @@ namespace SpaceShooter.Powerups
         {
             if (collision.transform.root.CompareTag("Player"))
             {
-                OnActivateTrippleShot();
+                switch(_powerupID)
+                {
+                    case 0:
+                        OnActivateTrippleShot();
+                        break;
+                    case 1:
+                        OnActivateSpeedBoost();
+                        break;
+                    case 2:
+                        break;
+                    default:
+                        break;
+                }
+                
                 Destroy(this.gameObject);
             }
-
-            //if (collision.transform.TryGetComponentInParents(out ICollidable collidable))
-            //{
-            //    if (collidable.Type == Category.Player)
-            //    {
-            //        OnActivateTrippleShot();
-            //        Destroy(this.gameObject);
-            //    }
-            //}
         }
 
         private void OnActivateTrippleShot()
         {
             onActivateTrippleShot?.Invoke();
+        }
+
+        private void OnActivateSpeedBoost()
+        {
+            onActivateSpeedBoost?.Invoke(1.5f);
         }
     }
 }

@@ -39,7 +39,7 @@ namespace SpaceShooter
 
         private void OnDisable()
         {
-            Powerup.onActivateTrippleShot += ActivateTrippleShot;
+            Powerup.onActivateTrippleShot -= ActivateTrippleShot;
         }
 
         // Start is called before the first frame update
