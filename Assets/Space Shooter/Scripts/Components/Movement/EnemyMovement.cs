@@ -6,12 +6,8 @@ using UnityEngine;
 
 namespace SpaceShooter
 {
-    public class Enemy : MonoBehaviour, ICollidable
+    public class EnemyMovement : MonoBehaviour
     {
-        [SerializeField]
-        private Category _objType;
-        public Category Type { get => _objType; set => _objType = value; }
-
         [SerializeField]
         private float _speed = 5f;
 

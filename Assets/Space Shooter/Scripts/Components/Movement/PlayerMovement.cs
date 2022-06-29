@@ -7,12 +7,8 @@ using UnityEngine;
 
 namespace SpaceShooter
 {
-    public class Player : MonoBehaviour, ICollidable
+    public class PlayerMovement : MonoBehaviour
     {
-        [SerializeField]
-        private Category _objType;
-        public Category Type { get => _objType; set => _objType = value; }
-
         [SerializeField]
         private Vector3 _startPos = new Vector3(0f, -3f, 0f);
 

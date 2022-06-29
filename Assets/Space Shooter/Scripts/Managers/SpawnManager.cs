@@ -1,3 +1,4 @@
+using SpaceShooter.Components;
 using SpaceShooter.Helpers;
 using System.Collections;
 using System.Collections.Generic;
@@ -67,6 +68,8 @@ namespace SpaceShooter.Managers
 
         private IEnumerator SpawnPowerupRoutine()
         {
+            yield return new WaitForSeconds(3f);
+
             while (_canSpawn)
             {
                 int powerup = Random.Range(0, _powerupPrefabs.Count);

@@ -2,30 +2,31 @@ using SpaceShooter.ExtensionMethods;
 using SpaceShooter.Helpers;
 using SpaceShooter.Interfaces;
 using SpaceShooter.Powerups;
+using SpaceShooter.PropertyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpaceShooter
+namespace SpaceShooter.Attack
 {
-    [RequireComponent(typeof(ICollidable))]
-    public class Attack : MonoBehaviour
+    public class PlayerAttack : MonoBehaviour
     {        
-        private Category _attacker;
+        private ObjType _attacker;
 
         [SerializeField]
-        private List<GameObject> _weaponPrefabs;
-        private GameObject _currentWeapon;
+        private GameObject _primaryWeapon;
+        [SerializeField, ReadOnly]
+        private GameObject _activeWeapon;
+        private GameObject _currentlyFired;
 
         private Vector3 _currentPos;
         [SerializeField]
-        private float _offset = 0.85f;
+        private float _primaryOffset = 0.85f;
 
         [SerializeField]
         private float _fireRate = 0.25f;
-        private bool _canFire;
-
-        private WaitForSeconds _waitTime;
+        private WaitForSeconds _reloadTime;
+        private bool _canFire;        
 
         [SerializeField]
         private bool _isTrippleShotAcive = false;
@@ -50,7 +51,16 @@ namespace SpaceShooter
                 _attacker = collidable.Type;
             }
 
-            UpdateWaitTime(_fireRate);
+            UpdateReloadTime(_fireRate);
+
+            if (_primaryWeapon != null)
+            {
+                _activeWeapon = _primaryWeapon;
+            }
+            else
+            {
+                Debug.LogError($"Assign Primary Weapon on {this.GetType().Name} for {transform.name}.");
+            }
         }
 
         // Update is called once per frame
@@ -65,24 +75,18 @@ namespace SpaceShooter
         private void CalculateAttack()
         {
             _currentPos = transform.position;
-            int prefab;
 
             if (!_isTrippleShotAcive)
             {
-                _currentPos.y += _offset;
-                prefab = 0;
-            }
-            else
-            {
-                prefab = 1;
+                _currentPos.y += _primaryOffset;
             }
 
-            _currentWeapon = Instantiate(_weaponPrefabs[prefab], _currentPos, Quaternion.identity);
-            foreach (Transform child in _currentWeapon.transform)
+            _currentlyFired = Instantiate(_activeWeapon, _currentPos, Quaternion.identity);
+            foreach (Transform child in _currentlyFired.transform)
             {
-                if (child.TryGetComponent(out ICollidable collidable))
+                if (child.TryGetComponentInParents(out ICollidable collidable))
                 {
-                    collidable.Type = _attacker;
+                    collidable.Type = ObjType.Player;
                 }
             }
 
@@ -93,14 +97,14 @@ namespace SpaceShooter
         {
             _canFire = false;
 
-            yield return _waitTime;
+            yield return _reloadTime;
 
             _canFire = true;
         }
 
-        private void UpdateWaitTime(float rate)
+        private void UpdateReloadTime(float fireRate)
         {
-            _waitTime = new WaitForSeconds(rate);
+            _reloadTime = new WaitForSeconds(fireRate);
 
             _canFire = true;
         }

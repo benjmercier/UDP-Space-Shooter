@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SpaceShooter.Helpers
 {
-    public enum Category
+    public enum ObjType
     {
         Default,
         Player,

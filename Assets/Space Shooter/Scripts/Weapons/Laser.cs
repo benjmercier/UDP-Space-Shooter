@@ -6,12 +6,10 @@ using UnityEngine;
 
 namespace SpaceShooter
 {
-    public class Laser : MonoBehaviour, ICollidable
+    public class Laser : MonoBehaviour
     {
         [SerializeField]
         private float _speed = 5f;
-
-        public Category Type { get; set; }
 
         // Start is called before the first frame update
         void Start()

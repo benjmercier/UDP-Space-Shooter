@@ -18,6 +18,7 @@ namespace SpaceShooter.Powerups
 
         public static event Action onActivateTrippleShot;
         public static event Action<float> onActivateSpeedBoost;
+        public static event Action onActivateShield;
 
         // Start is called before the first frame update
         void Start()
@@ -49,6 +50,7 @@ namespace SpaceShooter.Powerups
                         OnActivateSpeedBoost();
                         break;
                     case 2:
+                        OnActivateShield();
                         break;
                     default:
                         break;
@@ -66,6 +68,11 @@ namespace SpaceShooter.Powerups
         private void OnActivateSpeedBoost()
         {
             onActivateSpeedBoost?.Invoke(1.5f);
+        }
+
+        private void OnActivateShield()
+        {
+            onActivateShield?.Invoke();
         }
     }
 }

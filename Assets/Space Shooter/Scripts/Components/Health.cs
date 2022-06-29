@@ -5,12 +5,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpaceShooter
+namespace SpaceShooter.Components
 {
-    public class Health : MonoBehaviour
+    public class Health : MonoBehaviour, IDamageable
     {
         [SerializeField]
-        [Tooltip("Set Max Lives to 0 if any damage will destroy the object.")]
+        [Tooltip("Set Max Lives to 0 if any collision/damage will destroy the object.")]
         [Min(0)]
         private int _maxLives;
         [SerializeField] 

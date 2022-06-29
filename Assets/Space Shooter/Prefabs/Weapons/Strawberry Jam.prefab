@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1065699300043890779}
   - component: {fileID: 217398515919888365}
-  - component: {fileID: 5086519870149828276}
-  - component: {fileID: 2245189216441969387}
   - component: {fileID: 2414131538030865959}
   m_Layer: 0
   m_Name: Strawberry Jam
@@ -47,33 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3c317d02a043b449ac3eab88fd3925b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
---- !u!114 &5086519870149828276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2610193211247088937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52c0accc545f4444097bef11609527c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxLives: 0
-  _remainingLives: 0
---- !u!114 &2245189216441969387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2610193211247088937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5e1a831b0b61324c83757f036c10609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _speed: 3
 --- !u!50 &2414131538030865959
 Rigidbody2D:
   serializedVersion: 4

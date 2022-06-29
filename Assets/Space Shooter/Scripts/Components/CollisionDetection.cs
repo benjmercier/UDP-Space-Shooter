@@ -5,49 +5,68 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpaceShooter
+namespace SpaceShooter.Components
 {
-    [RequireComponent(typeof(Health), typeof(Rigidbody2D), typeof(ICollidable))]
-    public class CollisionDetection : MonoBehaviour
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class CollisionDetection : MonoBehaviour, ICollidable
     {
-        public GameObject GameObject => this.gameObject;
-        private Health _objHealth;
-        private Category _collidable = Category.Default;
+        [SerializeField]
+        [Tooltip("Set to 'Default' for any item not the Player or an Enemy.")]
+        private ObjType _objType;
+        public ObjType Type { get => _objType; set => _objType = value; }
+        
+        private IDamageable _damageable;
+        private IProtectable _protectable;
 
         private void Start()
         {
-            if (TryGetComponent(out Health health))
+            if (TryGetComponent(out IDamageable damageable))
             {
-                _objHealth = health;
+                _damageable = damageable;
             }
-            else
-            {
-                Debug.LogError($"{_objHealth.GetType()} component not applied to {this.transform.name}");
-            }           
             
-            if (TryGetComponent(out ICollidable collidable))
+            if (TryGetComponent(out IProtectable protectable))
             {
-                _collidable = collidable.Type;
+                _protectable = protectable;
+                if (_protectable == null)
+                {
+                    Debug.Log("null");
+                }
             }
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.TryGetComponentInParents(out ICollidable collidable))
+            if (other.TryGetComponentInParents(out ICollidable otherCollidable))
             {
-                if (collidable.Type == _collidable)
+                if (otherCollidable.Type == _objType)
                 {
                     return;
                 }
 
-                CollisionDetected();
+                CollisionDetected();                            
             }
         }
 
         private void CollisionDetected()
         {
-            _objHealth.Damage();
+            if (_protectable != null && _protectable.ShieldActive)
+            {
+                _protectable.ShieldHit();
+
+                return;
+            }
+
+            if (_damageable != null)
+            {
+                _damageable.Damage();
+            }
         }
+
+        
+
+        // report collision on game object
+        // - check if IDamageable component
 
 
 
