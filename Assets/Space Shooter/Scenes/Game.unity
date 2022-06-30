@@ -760,8 +760,8 @@ GameObject:
   - component: {fileID: 1978928315}
   - component: {fileID: 1978928316}
   - component: {fileID: 1978928312}
-  - component: {fileID: 1978928318}
   - component: {fileID: 1978928317}
+  - component: {fileID: 1978928318}
   - component: {fileID: 1978928313}
   - component: {fileID: 1978928311}
   m_Layer: 0
@@ -808,6 +808,8 @@ MonoBehaviour:
   _activeWeapon: {fileID: 0}
   _primaryOffset: 0.85
   _fireRate: 0.25
+  _weaponUpgrades:
+  - {fileID: 6589253077692861482, guid: 0febd499e588a5446a0a6e3ef0030fcb, type: 3}
   _isTrippleShotAcive: 0
 --- !u!114 &1978928313
 MonoBehaviour:
@@ -888,12 +890,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1978928310}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37d78b07869955040a855fb856c8690d, type: 3}
+  m_Script: {fileID: 11500000, guid: 93d8a12ee1fd77a4ab0a34f9ac77e1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _availablePowerups:
-  - {fileID: 6589253077692861482, guid: 0febd499e588a5446a0a6e3ef0030fcb, type: 3}
-  - {fileID: 4039523174274900614, guid: 0014c4cca214b1944aa6982970e10b5b, type: 3}
+  _shieldObj: {fileID: 4930824253266682145}
+  _shieldActive: 0
+  _mainCollider: {fileID: 1343110289}
+  _shieldHealth: 3
+  _currentShieldHealth: 0
 --- !u!1 &2076316197
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,30 +1172,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6450663595495538258}
-  - component: {fileID: 4930824253266682146}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &4930824253266682146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4930824253266682145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93d8a12ee1fd77a4ab0a34f9ac77e1f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shieldObj: {fileID: 0}
-  _shieldActive: 0
-  _mainCollider: {fileID: 0}
-  _shieldHealth: 3
+  m_IsActive: 1
 --- !u!1001 &6297760989272569820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1279,6 +1266,7 @@ GameObject:
   - component: {fileID: 1626492266496430011}
   - component: {fileID: 7748995625504544001}
   - component: {fileID: 2348589316619663847}
+  - component: {fileID: 7055233130944105874}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -1286,6 +1274,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &7055233130944105874
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7055233130944105873}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8497bf8426126064ebf5a259969706c4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!212 &7748995625504544001
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1325,7 +1332,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 447676127
   m_SortingLayer: 2
-  m_SortingOrder: 5
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 333b0196b7a764df5a7768ead9b69dbc, type: 3}
   m_Color: {r: 1, g: 0, b: 0.972549, a: 1}
   m_FlipX: 0

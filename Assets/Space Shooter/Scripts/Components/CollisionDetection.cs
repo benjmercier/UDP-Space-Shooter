@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace SpaceShooter.Components
 {
-    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Health), typeof(Rigidbody2D))]
     public class CollisionDetection : MonoBehaviour, ICollidable
     {
         [SerializeField]

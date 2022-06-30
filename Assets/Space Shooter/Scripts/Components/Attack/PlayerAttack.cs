@@ -26,7 +26,10 @@ namespace SpaceShooter.Attack
         [SerializeField]
         private float _fireRate = 0.25f;
         private WaitForSeconds _reloadTime;
-        private bool _canFire;        
+        private bool _canFire;
+
+        [SerializeField]
+        private List<GameObject> _weaponUpgrades;
 
         [SerializeField]
         private bool _isTrippleShotAcive = false;
@@ -123,10 +126,14 @@ namespace SpaceShooter.Attack
 
         private IEnumerator TrippleShotPowerDownRoutine()
         {
+            _activeWeapon = _weaponUpgrades[0];
+
             yield return new WaitForSeconds(5f);
 
             _isTrippleShotAcive = false;
             _trippleShotPowerDownRoutine = null;
+
+            _activeWeapon = _primaryWeapon;
         }
     }
 }

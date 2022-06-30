@@ -47,7 +47,7 @@ namespace SpaceShooter.Components
             }
 
             _shieldObj.SetActive(false);
-            _currentShieldHealth = _shieldHealth;
+            ResetShieldHealth();
         }
 
         private void ActivateShield()
@@ -56,6 +56,13 @@ namespace SpaceShooter.Components
             {
                 ToggleShields(true);
             }
+
+            ResetShieldHealth();
+        }
+
+        private void ResetShieldHealth()
+        {
+            _currentShieldHealth = _shieldHealth;
         }
 
         /// <summary>
