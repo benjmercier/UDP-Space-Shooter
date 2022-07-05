@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 4356641498086511454}
   - component: {fileID: 8316205435558030699}
   - component: {fileID: 587745487609752794}
+  - component: {fileID: 7081351203087836365}
   - component: {fileID: 8759925024881651882}
+  - component: {fileID: 1860649557788027942}
   m_Layer: 0
   m_Name: Ramming Enemy
   m_TagString: Enemy
@@ -71,7 +73,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 836804837759077482}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b1010b8e26ffd440a7ab35833674a2a, type: 3}
+  m_Script: {fileID: 11500000, guid: a475cf99832339e4e945bc01875f3ca5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _maxLives: 0
@@ -89,6 +91,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objType: 2
+--- !u!114 &7081351203087836365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836804837759077482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fd40250b4650954690e978d1afe5fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pointsToAward: 10
 --- !u!50 &8759925024881651882
 Rigidbody2D:
   serializedVersion: 4
@@ -110,6 +125,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1860649557788027942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836804837759077482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2cde22950f9584ba7dd61d80a694cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxLives: 0
+  _remainingLives: 0
 --- !u!1 &3016032261669499791
 GameObject:
   m_ObjectHideFlags: 0

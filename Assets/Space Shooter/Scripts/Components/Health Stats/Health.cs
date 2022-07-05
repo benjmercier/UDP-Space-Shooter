@@ -5,41 +5,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpaceShooter.Components
+namespace SpaceShooter.Components.Stats
 {
     public class Health : MonoBehaviour, IDamageable
     {
         [SerializeField]
         [Tooltip("Set Max Lives to 0 if any collision/damage will destroy the object.")]
         [Min(0)]
-        private int _maxLives;
+        protected int _maxLives;
         [SerializeField] 
         [ReadOnly]
-        private int _remainingLives;
+        protected int _remainingLives;
 
-        private string _objTag;
+        private int _points;
 
-        public static event Action<string> onObjDestroyed;
+        public static event Action<int> onObjDestroyed;
 
-        private void Start()
+        protected virtual void Start()
         {
-            _objTag = transform.root.tag;
-
             ResetCurrentLives();
         }
 
         // look into
-        private void OnValidate()
+        protected void OnValidate()
         {
             
         }
 
-        private void ResetCurrentLives()
+        protected void ResetCurrentLives()
         {
             _remainingLives = _maxLives;
         }
 
-        public void Damage()
+        public virtual void Damage()
         {
             if (_remainingLives > 0)
             {
@@ -47,14 +45,21 @@ namespace SpaceShooter.Components
             }
             else
             {
-                OnObjDestroyed(_objTag);
+                _points = 0;
+
+                if (TryGetComponent(out IScorable scorable))
+                {
+                    _points = scorable.PointsToAward;
+                }
+
+                OnObjDestroyed(_points);
                 Destroy(this.gameObject);
             }
         }
 
-        private void OnObjDestroyed(string objTag)
+        protected void OnObjDestroyed(int points)
         {
-            onObjDestroyed?.Invoke(objTag);
+            onObjDestroyed?.Invoke(points);
         }
     }
 }

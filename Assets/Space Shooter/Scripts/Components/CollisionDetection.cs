@@ -1,3 +1,4 @@
+using SpaceShooter.Components.Stats;
 using SpaceShooter.ExtensionMethods;
 using SpaceShooter.Helpers;
 using SpaceShooter.Interfaces;

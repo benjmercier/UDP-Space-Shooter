@@ -108,9 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2731387239161691637}
-  - component: {fileID: 3796094635679871732}
   - component: {fileID: 9096073280703811475}
-  - component: {fileID: 7841836540897551093}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -133,21 +131,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3796094635679871732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4039523174274900614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52c0accc545f4444097bef11609527c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _objType: 1
-  _maxLives: 0
-  _remainingLives: 0
 --- !u!50 &9096073280703811475
 Rigidbody2D:
   serializedVersion: 4
@@ -169,15 +152,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7841836540897551093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4039523174274900614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5e1a831b0b61324c83757f036c10609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

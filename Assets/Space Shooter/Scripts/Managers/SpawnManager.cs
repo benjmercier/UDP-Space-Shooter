@@ -21,12 +21,12 @@ namespace SpaceShooter.Managers
 
         private void OnEnable()
         {
-            Health.onObjDestroyed += OnPlayerDestroyed;
+            GameManager.onPlayerDestroyed += StopSpawning;
         }
 
         private void OnDisable()
         {
-            Health.onObjDestroyed -= OnPlayerDestroyed;
+            GameManager.onPlayerDestroyed -= StopSpawning;
         }
 
         // Start is called before the first frame update
@@ -83,10 +83,9 @@ namespace SpaceShooter.Managers
             }
         }
 
-        private void OnPlayerDestroyed(string objTag)
+        private void StopSpawning()
         {
-            if (objTag == "Player")
-                _canSpawn = false;
+            _canSpawn = false;
         }
     }
 }
