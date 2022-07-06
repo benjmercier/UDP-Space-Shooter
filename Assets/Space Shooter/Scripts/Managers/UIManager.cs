@@ -10,23 +10,21 @@ namespace SpaceShooter.Managers
 {
     public class UIManager : MonoSingleton<UIManager>
     {
+        [Header("Score")]
         [SerializeField]
         private TMP_Text _scoreCountTMP;
 
-        [Space]
-
+        [Header("Lives")]
         [SerializeField]
         private Image _livesImg;
         [SerializeField]
         private List<Sprite> _livesSprites;
 
-        [Space]
-
+        [Header("Restart")]
         [SerializeField]
         private TMP_Text _restartTMP;
 
-        [Space]
-
+        [Header("Game Over")]
         [SerializeField]
         private TMP_Text _gameOverTMP;
         private bool _runGameOverRoutine = false;

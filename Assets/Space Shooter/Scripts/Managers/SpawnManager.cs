@@ -21,12 +21,12 @@ namespace SpaceShooter.Managers
 
         private void OnEnable()
         {
-            GameManager.onPlayerDestroyed += StopSpawning;
+            GameManager.onGameOver += StopSpawning;
         }
 
         private void OnDisable()
         {
-            GameManager.onPlayerDestroyed -= StopSpawning;
+            GameManager.onGameOver -= StopSpawning;
         }
 
         // Start is called before the first frame update

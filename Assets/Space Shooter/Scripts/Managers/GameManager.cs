@@ -13,10 +13,9 @@ namespace SpaceShooter.Managers
         [SerializeField]
         private int _score;
 
-        private bool _playerActive;
+        private bool _gameOver = false;
 
         public static event Action<int> onUpdateScore;
-        public static event Action onPlayerDestroyed;
         public static event Action onGameOver;
 
         private void Awake()
@@ -27,18 +26,18 @@ namespace SpaceShooter.Managers
         private void OnEnable()
         {
             Health.onObjDestroyed += UpdateScore;
-            PlayerHealth.onPlayerDestroyed += PlayerDestroyed;
+            PlayerHealth.onPlayerDestroyed += GameOver;
         }
 
         private void OnDisable()
         {
             Health.onObjDestroyed -= UpdateScore;
-            PlayerHealth.onPlayerDestroyed -= PlayerDestroyed;
+            PlayerHealth.onPlayerDestroyed -= GameOver;
         }
 
         private void Update()
         {
-            if (!_playerActive && Input.GetKeyDown(KeyCode.R))
+            if (_gameOver && Input.GetKeyDown(KeyCode.R))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
@@ -46,7 +45,7 @@ namespace SpaceShooter.Managers
 
         private void ResetPlayer()
         {
-            _playerActive = true;
+            _gameOver = false;
         }
 
         private void UpdateScore(int points)
@@ -61,16 +60,9 @@ namespace SpaceShooter.Managers
             onUpdateScore?.Invoke(score);
         }
 
-        private void PlayerDestroyed()
+        private void GameOver()
         {
-            _playerActive = false;
-
-            OnPlayerDestroyed();
-        }
-
-        private void OnPlayerDestroyed()
-        {
-            onPlayerDestroyed?.Invoke();
+            _gameOver = true;
 
             OnGameOver();
         }
