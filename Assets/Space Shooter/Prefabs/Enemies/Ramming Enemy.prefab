@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 9223198868305438189}
   - component: {fileID: 4356641498086511454}
   - component: {fileID: 8316205435558030699}
+  - component: {fileID: 1860649557788027942}
   - component: {fileID: 587745487609752794}
   - component: {fileID: 7081351203087836365}
+  - component: {fileID: 960160038888457292}
   - component: {fileID: 8759925024881651882}
-  - component: {fileID: 1860649557788027942}
   m_Layer: 0
   m_Name: Ramming Enemy
   m_TagString: Enemy
@@ -78,6 +79,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxLives: 0
   _remainingLives: 0
+  _mainCollider2D: {fileID: 4690430431106359951}
+--- !u!114 &1860649557788027942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836804837759077482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2cde22950f9584ba7dd61d80a694cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxLives: 0
+  _remainingLives: 0
 --- !u!114 &587745487609752794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,6 +120,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointsToAward: 10
+--- !u!114 &960160038888457292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836804837759077482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10effa95eed2c9a4bac54bcb31a7403d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 1858447671668836210}
 --- !u!50 &8759925024881651882
 Rigidbody2D:
   serializedVersion: 4
@@ -125,20 +154,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1860649557788027942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 836804837759077482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba2cde22950f9584ba7dd61d80a694cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxLives: 0
-  _remainingLives: 0
 --- !u!1 &3016032261669499791
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1790641813386516733}
   - component: {fileID: 521765012358960160}
+  - component: {fileID: 1858447671668836210}
   - component: {fileID: 4690430431106359951}
   m_Layer: 0
   m_Name: Sprite
@@ -222,6 +238,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1858447671668836210
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3016032261669499791}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: d4a03909cf41df1489bf1349017fbfc8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!61 &4690430431106359951
 BoxCollider2D:
   m_ObjectHideFlags: 0

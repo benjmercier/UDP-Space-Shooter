@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace SpaceShooter.Components.Stats
 {
+    [RequireComponent(typeof(CollisionDetection))]
     public class Health : MonoBehaviour, IDamageable
     {
         [SerializeField]
@@ -17,7 +18,7 @@ namespace SpaceShooter.Components.Stats
         [ReadOnly]
         protected int _remainingLives;
 
-        private int _points;
+        protected int _points;
 
         public static event Action<int> onObjDestroyed;
 
@@ -52,7 +53,11 @@ namespace SpaceShooter.Components.Stats
                     _points = scorable.PointsToAward;
                 }
 
-                OnObjDestroyed(_points);
+                if (TryGetComponent(out IAnimatable animatable))
+                {
+                    animatable.PlayDestroyedAnim();
+                }
+                
                 Destroy(this.gameObject);
             }
         }

@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 1933024333132503844}
   - component: {fileID: 1346195352636348644}
   - component: {fileID: 2253432875617072813}
+  - component: {fileID: 3068109463133369988}
   - component: {fileID: 7071717760943133331}
-  - component: {fileID: 5686754378256806083}
   m_Layer: 0
   m_Name: Big Gun Enemy
   m_TagString: Enemy
@@ -78,6 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxLives: 0
   _remainingLives: 0
+  _mainCollider2D: {fileID: 1315937496894484405}
 --- !u!114 &1346195352636348644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,6 +105,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointsToAward: 15
+--- !u!114 &3068109463133369988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166050923798294099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10effa95eed2c9a4bac54bcb31a7403d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 8940862970396687092}
 --- !u!50 &7071717760943133331
 Rigidbody2D:
   serializedVersion: 4
@@ -125,20 +139,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5686754378256806083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1166050923798294099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba2cde22950f9584ba7dd61d80a694cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxLives: 0
-  _remainingLives: 0
 --- !u!1 &1315937496894484407
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1315937496894484404}
   - component: {fileID: 1315937496894484410}
+  - component: {fileID: 8940862970396687092}
   - component: {fileID: 1315937496894484405}
   m_Layer: 0
   m_Name: Sprite
@@ -222,6 +223,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8940862970396687092
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315937496894484407}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 62c792ce9614ca340a3e17caa9ba532c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!61 &1315937496894484405
 BoxCollider2D:
   m_ObjectHideFlags: 0

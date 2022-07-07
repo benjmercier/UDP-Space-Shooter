@@ -1,4 +1,3 @@
-using SpaceShooter.Components.Stats;
 using SpaceShooter.ExtensionMethods;
 using SpaceShooter.Helpers;
 using SpaceShooter.Interfaces;
@@ -8,7 +7,7 @@ using UnityEngine;
 
 namespace SpaceShooter.Components
 {
-    [RequireComponent(typeof(Health), typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Rigidbody2D))]
     public class CollisionDetection : MonoBehaviour, ICollidable
     {
         [SerializeField]
@@ -29,10 +28,6 @@ namespace SpaceShooter.Components
             if (TryGetComponent(out IProtectable protectable))
             {
                 _protectable = protectable;
-                if (_protectable == null)
-                {
-                    Debug.Log("null");
-                }
             }
         }
 

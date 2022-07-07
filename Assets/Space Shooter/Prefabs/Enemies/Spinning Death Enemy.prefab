@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 7747193213425358584}
   - component: {fileID: 2582847151220765674}
   - component: {fileID: 2731687163655652762}
+  - component: {fileID: 4534000401009624507}
   - component: {fileID: 3242220301315337394}
-  - component: {fileID: 1709241421709892594}
   m_Layer: 0
   m_Name: Spinning Death Enemy
   m_TagString: Enemy
@@ -82,6 +82,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxLives: 0
   _remainingLives: 0
+  _mainCollider2D: {fileID: 4741384166511686338}
 --- !u!114 &2582847151220765674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,6 +109,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointsToAward: 25
+--- !u!114 &4534000401009624507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3242220301315337405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10effa95eed2c9a4bac54bcb31a7403d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 7996530423108495303}
 --- !u!50 &3242220301315337394
 Rigidbody2D:
   serializedVersion: 4
@@ -129,20 +143,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1709241421709892594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3242220301315337405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba2cde22950f9584ba7dd61d80a694cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxLives: 0
-  _remainingLives: 0
 --- !u!1 &3242220301386359049
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,7 +324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3242220302570922978}
   - component: {fileID: 3242220302570922976}
-  - component: {fileID: 3242220302570922979}
+  - component: {fileID: 7996530423108495303}
   - component: {fileID: 4741384166511686338}
   m_Layer: 0
   m_Name: Sprite
@@ -398,22 +398,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &3242220302570922979
-CircleCollider2D:
+--- !u!95 &7996530423108495303
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3242220302570922989}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.6
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 507be1a087040ce42ba3424460273aed, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!60 &4741384166511686338
 PolygonCollider2D:
   m_ObjectHideFlags: 0

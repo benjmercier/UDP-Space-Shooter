@@ -17,7 +17,7 @@ namespace SpaceShooter.Components
         public bool ShieldActive => _shieldActive;
 
         [SerializeField]
-        private Collider2D _mainCollider;
+        private Collider2D _mainCollider2D;
 
         [SerializeField]
         private int _shieldHealth = 3;
@@ -44,6 +44,11 @@ namespace SpaceShooter.Components
             else
             {
                 //Debug.LogError($"Shield object has not been added as a child to {transform.name}");
+            }
+
+            if (_mainCollider2D == null)
+            {
+                _mainCollider2D = GetComponentInChildren<Collider2D>();
             }
 
             _shieldObj.SetActive(false);
@@ -73,7 +78,7 @@ namespace SpaceShooter.Components
         {
             _shieldActive = shieldActive;
             _shieldObj.SetActive(shieldActive);
-            _mainCollider.enabled = !shieldActive;
+            _mainCollider2D.enabled = !shieldActive;
         }
 
         public void ShieldHit()
