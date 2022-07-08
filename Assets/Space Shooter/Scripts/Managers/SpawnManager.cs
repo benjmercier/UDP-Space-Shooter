@@ -21,28 +21,29 @@ namespace SpaceShooter.Managers
 
         private void OnEnable()
         {
+            GameManager.onStartGame += StartSpawning;
             GameManager.onGameOver += StopSpawning;
         }
 
         private void OnDisable()
         {
+            GameManager.onStartGame -= StartSpawning;
             GameManager.onGameOver -= StopSpawning;
         }
 
-        // Start is called before the first frame update
-        void Start()
+        private void StartSpawning()
         {
-            _canSpawn = true;
+            StartCoroutine(StartSpawningRoutine());
         }
 
-        // Update is called once per frame
-        void Update()
+        private IEnumerator StartSpawningRoutine()
         {
-            if (Input.GetKeyDown(KeyCode.F) && _canSpawn)
-            {
-                StartCoroutine(SpawnRoutine());
-                StartCoroutine(SpawnPowerupRoutine());
-            }
+            yield return new WaitForSeconds(3f);
+
+            _canSpawn = true;
+
+            StartCoroutine(SpawnRoutine());
+            StartCoroutine(SpawnPowerupRoutine());
         }
 
         private IEnumerator SpawnRoutine()

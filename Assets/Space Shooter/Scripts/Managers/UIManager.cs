@@ -1,4 +1,4 @@
-using SpaceShooter.Components.Stats;
+using SpaceShooter.Components.HealthStats;
 using SpaceShooter.Helpers;
 using System.Collections;
 using System.Collections.Generic;

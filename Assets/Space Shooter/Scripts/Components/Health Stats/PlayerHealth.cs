@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpaceShooter.Components.Stats
+namespace SpaceShooter.Components.HealthStats
 {
     public class PlayerHealth : Health
     {

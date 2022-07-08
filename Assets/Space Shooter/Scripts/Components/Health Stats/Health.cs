@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpaceShooter.Components.Stats
+namespace SpaceShooter.Components.HealthStats
 {
     [RequireComponent(typeof(CollisionDetection))]
     public class Health : MonoBehaviour, IDamageable

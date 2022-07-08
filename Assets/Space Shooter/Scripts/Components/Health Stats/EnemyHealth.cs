@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpaceShooter.Components.Stats
+namespace SpaceShooter.Components.HealthStats
 {
     public class EnemyHealth : Health
     {
@@ -47,7 +47,10 @@ namespace SpaceShooter.Components.Stats
 
         private IEnumerator DestroyedRoutine()
         {
-            _mainCollider2D.enabled = false;
+            if (_mainCollider2D != null)
+            {
+                _mainCollider2D.enabled = false;
+            }                        
 
             if (TryGetComponent(out Bounds bounds))
             {

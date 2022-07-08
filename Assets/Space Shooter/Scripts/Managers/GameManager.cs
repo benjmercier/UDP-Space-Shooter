@@ -1,4 +1,4 @@
-using SpaceShooter.Components.Stats;
+using SpaceShooter.Components.HealthStats;
 using SpaceShooter.Helpers;
 using System;
 using System.Collections;
@@ -13,8 +13,10 @@ namespace SpaceShooter.Managers
         [SerializeField]
         private int _score;
 
+        private bool _gameRunning = false;
         private bool _gameOver = false;
 
+        public static event Action onStartGame;
         public static event Action<int> onUpdateScore;
         public static event Action onGameOver;
 
@@ -25,14 +27,16 @@ namespace SpaceShooter.Managers
 
         private void OnEnable()
         {
+            AsteroidHealth.onAsteroidDestroyed += StartGame;
             Health.onObjDestroyed += UpdateScore;
-            PlayerHealth.onPlayerDestroyed += GameOver;
+            PlayerHealth.onPlayerDestroyed += GameOver;            
         }
 
         private void OnDisable()
         {
+            AsteroidHealth.onAsteroidDestroyed -= StartGame;
             Health.onObjDestroyed -= UpdateScore;
-            PlayerHealth.onPlayerDestroyed -= GameOver;
+            PlayerHealth.onPlayerDestroyed -= GameOver;            
         }
 
         private void Update()
@@ -46,6 +50,21 @@ namespace SpaceShooter.Managers
         private void ResetPlayer()
         {
             _gameOver = false;
+        }
+
+        private void StartGame()
+        {
+            if (!_gameRunning)
+            {
+                _gameRunning = true;
+
+                OnStartGame();
+            }            
+        }
+
+        private void OnStartGame()
+        {
+            onStartGame?.Invoke();
         }
 
         private void UpdateScore(int points)
@@ -62,6 +81,7 @@ namespace SpaceShooter.Managers
 
         private void GameOver()
         {
+            _gameRunning = false;
             _gameOver = true;
 
             OnGameOver();

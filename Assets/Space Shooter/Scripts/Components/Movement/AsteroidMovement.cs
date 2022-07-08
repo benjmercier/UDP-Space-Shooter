@@ -4,14 +4,15 @@ using UnityEngine;
 
 namespace SpaceShooter
 {
-    public class Asteroid : MonoBehaviour
+    public class AsteroidMovement : MonoBehaviour
     {
         [SerializeField]
         private float _rotationSpeed = 3f;
 
         private void Update()
         {
-            Rotate();
+            if (gameObject.activeInHierarchy)
+                Rotate();
         }
 
         private void Rotate()
