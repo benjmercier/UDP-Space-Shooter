@@ -16,6 +16,10 @@ namespace SpaceShooter
         private float _speed = 3.5f;
         private float _currentSpeed;
 
+        [SerializeField]
+        private GameObject _normalThrusters,
+            _boostedThrusters;
+
         private float _horInput,
             _vertInput;
 
@@ -38,6 +42,8 @@ namespace SpaceShooter
         {
             transform.position = _startPos;
             _currentSpeed = _speed;
+
+            ToggleBoostedThrusters(false);
         }
 
         // Update is called once per frame
@@ -70,9 +76,19 @@ namespace SpaceShooter
         {
             _currentSpeed = _speed * speedMultiplier;
 
+            ToggleBoostedThrusters(true);
+
             yield return new WaitForSeconds(5f);
 
             _currentSpeed = _speed;
+
+            ToggleBoostedThrusters(false);
+        }
+
+        private void ToggleBoostedThrusters(bool areActive)
+        {
+            _normalThrusters.SetActive(!areActive);
+            _boostedThrusters.SetActive(areActive);
         }
     }
 }
