@@ -15,6 +15,8 @@ namespace SpaceShooter.Powerups
         private int _powerupID;
         [SerializeField]
         private float _speed = 3f;
+        [SerializeField]
+        private AudioClip _onActivationAudioClip;
 
         public static event Action onActivateTrippleShot;
         public static event Action<float> onActivateSpeedBoost;
@@ -41,6 +43,11 @@ namespace SpaceShooter.Powerups
         {
             if (collision.transform.root.CompareTag("Player"))
             {
+                if (collision.transform.TryGetComponentInParents(out IAudible audible))
+                {
+                    audible.PlayOneShot(_onActivationAudioClip);
+                }
+
                 switch(_powerupID)
                 {
                     case 0:

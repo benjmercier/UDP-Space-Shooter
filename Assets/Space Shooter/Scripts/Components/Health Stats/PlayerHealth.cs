@@ -1,4 +1,5 @@
 using SpaceShooter.Components;
+using SpaceShooter.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,6 +53,11 @@ namespace SpaceShooter.Components.HealthStats
             }
             else
             {
+                if (TryGetComponent(out IAudible audible))
+                {
+                    audible.PlayOneShot(_onDestroyedAudioClip);
+                }
+
                 OnPlayerDestroyed();
                 Destroy(this.gameObject);
             }

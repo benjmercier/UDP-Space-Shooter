@@ -18,6 +18,9 @@ namespace SpaceShooter.Components.HealthStats
         [ReadOnly]
         protected int _remainingLives;
 
+        [SerializeField]
+        protected AudioClip _onDestroyedAudioClip;
+
         protected int _points;
 
         public static event Action<int> onObjDestroyed;

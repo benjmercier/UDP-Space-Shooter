@@ -57,6 +57,11 @@ namespace SpaceShooter.Components.HealthStats
                 bounds.applyBounds = false;
             }
 
+            if (TryGetComponent(out IAudible audible))
+            {
+                audible.PlayOneShot(_onDestroyedAudioClip);
+            }
+
             yield return new WaitForSeconds(3f);
 
             Destroy(this.gameObject);

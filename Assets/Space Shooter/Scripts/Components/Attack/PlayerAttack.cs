@@ -7,27 +7,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpaceShooter.Attack
+namespace SpaceShooter.Components.Attack
 {
-    public class PlayerAttack : MonoBehaviour
-    {        
-        private ObjType _attacker;
-
-        [SerializeField]
-        private GameObject _primaryWeapon;
-        [SerializeField, ReadOnly]
-        private GameObject _activeWeapon;
-        private GameObject _currentlyFired;
-
-        private Vector3 _currentPos;
-        [SerializeField]
-        private float _primaryOffset = 0.85f;
-
-        [SerializeField]
-        private float _fireRate = 0.25f;
-        private WaitForSeconds _reloadTime;
-        private bool _canFire;
-
+    public class PlayerAttack : Attack
+    {
         [SerializeField]
         private List<GameObject> _weaponUpgrades;
 
@@ -46,28 +29,8 @@ namespace SpaceShooter.Attack
             Powerup.onActivateTrippleShot -= ActivateTrippleShot;
         }
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            if (transform.TryGetComponentInParents(out ICollidable collidable))
-            {
-                _attacker = collidable.Type;
-            }
-
-            UpdateReloadTime(_fireRate);
-
-            if (_primaryWeapon != null)
-            {
-                _activeWeapon = _primaryWeapon;
-            }
-            else
-            {
-                Debug.LogError($"Assign Primary Weapon on {this.GetType().Name} for {transform.name}.");
-            }
-        }
-
         // Update is called once per frame
-        void Update()
+        protected override void Update()
         {            
             if (Input.GetKeyDown(KeyCode.Space) && _canFire)
             {
@@ -75,7 +38,7 @@ namespace SpaceShooter.Attack
             }
         }
 
-        private void CalculateAttack()
+        protected override void CalculateAttack()
         {
             _currentPos = transform.position;
 
@@ -93,23 +56,12 @@ namespace SpaceShooter.Attack
                 }
             }
 
+            if (TryGetComponent(out IAudible audible))
+            {
+                audible.PlayOneShot(_primaryWeaponAudioClip);
+            }
+
             StartCoroutine(FireRateRoutine());
-        }
-
-        private IEnumerator FireRateRoutine()
-        {
-            _canFire = false;
-
-            yield return _reloadTime;
-
-            _canFire = true;
-        }
-
-        private void UpdateReloadTime(float fireRate)
-        {
-            _reloadTime = new WaitForSeconds(fireRate);
-
-            _canFire = true;
         }
 
         private void ActivateTrippleShot()

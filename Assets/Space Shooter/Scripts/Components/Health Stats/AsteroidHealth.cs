@@ -58,6 +58,12 @@ namespace SpaceShooter.Components.HealthStats
             _explosion = Instantiate(_explosionAnimPrefab, transform.position, Quaternion.identity);
             _explosion.transform.parent = this.transform;
 
+
+            if (TryGetComponent(out IAudible audible))
+            {
+                audible.PlayOneShot(_onDestroyedAudioClip);
+            }
+
             yield return new WaitForSeconds(_explosionAnimOffset);
 
             if (_mainSpriteRenderer != null)
